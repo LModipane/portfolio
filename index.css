@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-color: white;
+}
+
+a{
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    font-family: inherit;
+}
+
+section{
+    min-height: 100vh;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 3rem 18rem;
+}
+
+header{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.section{
+    transform: translateY(-100%) scale(0);
+    transition: all .4s ease-in-out;
+}
+
+.sec1{
+    display: none;
+    transform: translateY(0) scale(1);
+}
+.sec2{
+    display: none;
+    transform: translateY(0) scale(1);
+}.sec3{
+    display: none;
+    transform: translateY(0) scale(1);
+}.sec4{
+    display: none;
+    transform: translateY(0) scale(1);
+}
+.sec5{
+    display: none;
+    transform: translateY(0) scale(1);
+}
+.sec6{
+    display: none;
+    transform: translateY(0) scale(1);
+}
+.sec7{
+    display: none;
+    transform: translateY(0) scale(1);
+}
+
+.controls{
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    right: 3%;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-50%);
+    align-items: center;
+    justify-content: center;
+}
+
+.control{
+    padding: 1rem;
+    cursor: pointer;
+    background-color: black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0px;
+    box-shadow: 0 3px 100px rgba(0,0,0,.8);
+}
+
+.active-btn{
+    background-color: orangered;
+    transition: all .4s ease-in-out;
+}
+
+i{
+    color: white;
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.active{
+    display: block;
+}
