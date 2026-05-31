@@ -58,10 +58,10 @@ type LocationModel = 'in-office' | 'hybrid' | 'remote';
 type Career = {
 	_id: string;
 	role: string;
-	endDate: string | undefined;
 	startDate: string;
 	description: string;
 	locationType: LocationModel;
+	endDate: string | undefined;
 	tools: { _id: string; title: string }[];
 	organisation: { name: string; logoUrl: string; location: string; link: string };
 };
@@ -267,7 +267,7 @@ export default async function Home() {
 						My Projects
 					</h2>
 					<hr className="h-2 border-0 bg-linear-to-r from-blue-500 to-purple-500" />
-					<div className="mt-6">
+					<div className="mt-6 flex flex-wrap gap-4 w-full">
 						{projects.map(obj => (
 							<ProjectCard key={obj._id} {...obj} />
 						))}
@@ -347,11 +347,11 @@ const ProjectCard = ({
 	description,
 	backgroundImageUrl,
 }: Project) => (
-	<div className="bg-gray-200 h-125 w-100 p-1 rounded-lg bg-linear-to-r from-blue-500 to-purple-600 mb-2 animate-gradient">
+	<div className="bg-gray-200 h-125 w-full z-10 hover:z-20 max-w-[30%] hover:p-1 -p-1 rounded-lg bg-linear-to-r from-blue-500 to-purple-600 border-4 border-gray-300 hover:border-0 mb-2 hover:scale-115 animate-gradient ease-in-out">
 		<Link href={`/project/${_id}`}>
-			<div className="bg-white h-full w-full rounded-lg flex flex-col">
-				<div className="relative h-40 w-full flex items-center justify-start">
-					<div className="relative h-40 w-full">
+			<div className="bg-white h-full w-full rounded-sm flex flex-col">
+				<div className="relative h-40 w-full flex items-center">
+					<div className="relative h-40 w-full overflow-hidden">
 						<Image
 							src={backgroundImageUrl}
 							alt={`${title} background`}
@@ -359,13 +359,13 @@ const ProjectCard = ({
 							className="rounded-t-lg object-cover"
 						/>
 					</div>
-					<div className="absolute -bottom-10 left-4 h-28 w-28 rounded-full overflow-hidden">
+					<div className="absolute -bottom-10 h-28 w-28 rounded-full overflow-hidden">
 						<Image src={logoUrl} alt={`${title} logo`} fill className="object-cover" />
 					</div>
 				</div>
-				<h3 className="ml-30 mt-3 text-3xl font-bold text-gray-800 w-full truncate">{title}</h3>
+				<h3 className="ml-26 mt-3 text-3xl font-bold text-gray-800 w-[72%] truncate">{title}</h3>
 				<div className="flex flex-col gap-y-2 mt-2 px-4">
-					<p className="mt-2 w-full text-gray-600 line-clamp-3 ">{description}</p>
+					<p className="mt-2 w-full text-gray-600 line-clamp-5 ">{description}</p>
 					{tools.map(obj => (
 						<div key={obj._id} className="bg-gray-200 w-fit text-gray-800 p-2 rounded-lg">
 							{obj.title}
@@ -432,8 +432,8 @@ const BlogCard = ({ _id, headline, imageCardUrl, description, publishedAt }: Blo
 						<Clock size={15} /> {blogDate(publishedAt)}
 					</span>
 					<h3 className="text-lg font-bold capitalize">{headline}</h3>
-					<p className="text-sm line-clamp-3">{description}</p>
-					<div className="flex justify-end gap-4">
+					<p className="text-sm line-clamp-2">{description}</p>
+					<div className="flex justify-end gap-4 mt-auto">
 						<span className="bg-gray-200 px-2 py-1 rounded-xl">Read time: 6 min</span>
 						<span className="bg-gray-200 px-2 py-1 rounded-xl">✨: 6</span>
 					</div>
