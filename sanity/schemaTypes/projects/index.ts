@@ -57,5 +57,11 @@ export default defineType({
 			type: 'url',
 			description: 'The link to the live version of the project',
 		}),
+		defineField({
+			name: 'content',
+			title: "Project Breakdown",
+			type: 'markdown', // Enables the Markdown editor
+			description: "This refers to readme where i break down project to visitors"
+		}),
 	],
 });

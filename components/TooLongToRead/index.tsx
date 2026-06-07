@@ -7,7 +7,7 @@ type Props = {
 	maxWords?: number;
 };
 
-const TooLongToRead = ({ description, maxWords = 35 }: Props) => {
+const TooLongToRead = ({ description, maxWords = 55 }: Props) => {
 	const [isExpanded, setIsExpanded] = useState(false);
 
 	// Split the string into an array of words
