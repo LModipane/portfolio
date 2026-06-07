@@ -21,8 +21,8 @@ export default async function Home({ params }: { params: Promise<{ projectId: st
 	});
 
 	return (
-		<main className="h-full w-full text-slate-800 overflow-x-hidden">
-			<header className="w-full h-fit flex flex-col ">
+		<main className="h-full w-full flex flex-col text-slate-800 bg-gray-50 overflow-x-hidden">
+			<header className="w-full h-fit">
 				<div className="relative w-full h-40">
 					<Image
 						src={coverImageUrl}
@@ -31,8 +31,8 @@ export default async function Home({ params }: { params: Promise<{ projectId: st
 						className="object-center object-cover"
 					/>
 				</div>
-				<div className="relative mx-auto w-fit min-w-[60%]">
-					<div className="absolute -top-17 left-0 w-34 h-34">
+				<div className="relative mx-auto w-full max-w-[60%] -mt-17">
+					<div className="relative w-34 h-34">
 						<Image
 							fill
 							src={iconUrl}
@@ -40,16 +40,20 @@ export default async function Home({ params }: { params: Promise<{ projectId: st
 							className="object-cover object-center rounded-full"
 						/>
 					</div>
-					<div className="absolute top-17 mt-4">
+					<div className="mt-4">
 						<h1 className="text-4xl font-bold">{title}</h1>
 					</div>
 					<TooLongToRead description={description} />
 				</div>
 			</header>
 			{/* Body: */}
-			<section className="h-full">body</section>
+			<section className="h-full w-full mt-10">
+				<div className="w-full mx-auto max-w-[60%]">body</div>
+			</section>
 			{/* Comments */}
-			<section>comments</section>
+			<section className="h-full w-full">
+				<div className="w-full mx-auto max-w-[60%]">comment</div>
+			</section>
 			{/* footer */}
 			<footer className="h-full text-white bg-black mt-auto p-2 flex items-center justify-center">
 				footer
