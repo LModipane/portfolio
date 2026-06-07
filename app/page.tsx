@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import Titles from '@/components/Titles';
+import { Titles } from '@/components/index';
 import gitHubLogo from '../public/github.svg';
 import linkinlogo from '../public/linkedin.svg';
 import { client as SanityClient } from '@/sanity/lib/client';
@@ -75,7 +75,7 @@ export default async function Home() {
 					myName,
 					myRoles
 				},`,
-		
+
 		// here I query for projects sections
 		projects: `*[_type == "projects"]{
 					"_id": slug.current,
