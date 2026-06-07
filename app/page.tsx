@@ -267,7 +267,7 @@ export default async function Home() {
 						My Projects
 					</h2>
 					<hr className="h-2 border-0 bg-linear-to-r from-blue-500 to-purple-500" />
-					<div className="mt-6 flex flex-wrap gap-4 w-full">
+					<div className="mt-6 flex justify-center flex-wrap  gap-4 w-full">
 						{projects.map(obj => (
 							<ProjectCard key={obj._id} {...obj} />
 						))}
@@ -347,19 +347,19 @@ const ProjectCard = ({
 	description,
 	backgroundImageUrl,
 }: Project) => (
-	<div className="bg-gray-200 h-125 w-full z-10 hover:z-20 max-w-[30%] hover:p-1 -p-1 rounded-lg bg-linear-to-r from-blue-500 to-purple-600 border-4 border-gray-300 hover:border-0 mb-2 hover:scale-115 animate-gradient ease-in-out">
+	<div className="bg-gray-200 h-125 w-full z-10 hover:z-20 max-w-[30%] hover:p-1 -p-1 rounded-lg bg-linear-to-r from-blue-500 to-purple-600 border-4 overflow-hidden border-gray-300 hover:border-0 mb-2 hover:scale-115 animate-gradient ease-in-out">
 		<Link href={`/project/${_id}`}>
-			<div className="bg-white h-full w-full rounded-sm flex flex-col">
+			<div className="bg-white h-full w-full flex flex-col rounded-sm">
 				<div className="relative h-40 w-full flex items-center">
-					<div className="relative h-40 w-full overflow-hidden">
+					<div className="relative h-40 w-full">
 						<Image
 							src={backgroundImageUrl}
 							alt={`${title} background`}
 							fill
-							className="rounded-t-lg object-cover"
+							className="object-cover object-center rounded-t-sm"
 						/>
 					</div>
-					<div className="absolute -bottom-10 h-28 w-28 rounded-full overflow-hidden">
+					<div className="absolute -bottom-10 h-28 w-28 rounded-full overflow-hidden bg-linear-to-tr from-blue-500/20 to-purple-600/20 animate-gradient flex items-center justify-center">
 						<Image src={logoUrl} alt={`${title} logo`} fill className="object-cover" />
 					</div>
 				</div>
