@@ -3,15 +3,14 @@ import remarkGfm from 'remark-gfm';
 import ReactMarkdown from 'react-markdown';
 import { client } from '@/sanity/lib/client';
 import { TooLongToRead } from '@/components/index';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
 import {
 	Table,
+	TableRow,
 	TableBody,
 	TableCell,
 	TableHead,
 	TableHeader,
-	TableRow,
 } from '@/components/ui/table';
 
 type Project = {
@@ -114,7 +113,7 @@ export default async function Home({ params }: { params: Promise<{ projectId: st
 
 							tr: ({ children }) => <TableRow>{children}</TableRow>,
 
-							th: ({ children }) => <TableHead className="font-semibold bg-gray-300">{children}</TableHead>,
+							th: ({ children }) => <TableHead className="font-semibold bg-gray-200">{children}</TableHead>,
 
 							td: ({ children }) => (
 								<TableCell className="align-top whitespace-pre-line border-r last:border-r-0 capitalize">
@@ -152,7 +151,7 @@ export default async function Home({ params }: { params: Promise<{ projectId: st
 			</section>
 			{/* Comments */}
 			<section className="h-full w-full">
-				<div className="w-full mx-auto max-w-[60%] mt-10">comment</div>
+				<div className="w-full mx-auto max-w-[70%] mt-10">comment</div>
 			</section>
 			{/* footer */}
 			<footer className="h-full text-white bg-black mt-auto p-2 flex items-center justify-center">
