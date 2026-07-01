@@ -172,7 +172,7 @@ export default async function Home() {
 					</h1>
 
 					{/* Subtitle */}
-					<h2 className="text-base sm:text-xl text-slate-600 max-w-2xl leading-relaxed">
+					<h2 className="text-base sm:text-xl text-slate-800 max-w-2xl leading-relaxed">
 						Looking to contribute Software, Cloud, & Data expertise to your next project. Let&apos;s
 						schedule a{' '}
 						<span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600 font-medium">
@@ -220,6 +220,7 @@ export default async function Home() {
 					</div>
 				</div>
 			</header>
+			{/* Add Carousel for all my badgets/certificates */}
 			{/* About me Section */}
 			<section className="w-full flex justify-center bg-slate-50 px-4 py-16">
 				<div className="w-full max-w-4xl bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-10">
@@ -259,8 +260,8 @@ export default async function Home() {
 					</div>
 
 					{/* CTA Links */}
-					<div className="mt-10 flex flex-col sm:flex-row flex-wrap gap-3 text-sm">
-						<span className="text-slate-600">Explore:</span>
+					<div className="mt-10 flex flex-wrap gap-3 text-sm">
+						<span className="text-slate-600">Explore: My</span>
 
 						<a
 							href="#Projects"
@@ -327,7 +328,7 @@ export default async function Home() {
 						break down complex topics into practical guides and share what I&apos;m learning along
 						the way.
 					</p> */}
-					<div className="mt-6">
+					<div className="mt-6 flex flex-wrap gap-4 w-full">
 						{blogs.map(obj => (
 							<BlogCard key={obj._id} {...obj} />
 						))}
@@ -457,7 +458,7 @@ const SkillCard = ({ title, description, iconUrl }: Skill) => (
 );
 
 const BlogCard = ({ _id, headline, imageCardUrl, description, publishedAt }: Blog) => (
-	<div className="group w-full sm:w-[50%]">
+	<div className="group w-full md:w-[48%]">
 		<Link href={`/blog/${_id}`}>
 			<div className="h-full flex flex-col sm:flex-row rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
 				{/* Image */}
@@ -541,7 +542,7 @@ const CareerCard = ({
 				index % 2 === 0 ? 'mr-auto' : 'ml-auto',
 			)}>
 			<div className="bg-gray-200 min-h-full w-full hover:p-0.75 rounded-lg bg-linear-to-r from-blue-500 to-purple-600 animate-gradient overflow-hidden group/card">
-				<div className="group/card relative w-full h-full border border-slate-200 bg-white backdrop-blur-sm shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden p-5">
+				<div className="group/card relative w-full h-full border rounded-md border-slate-200 bg-white backdrop-blur-sm shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden p-5">
 					{/* Header */}
 					<div className="flex items-start justify-between gap-4">
 						<div className="flex flex-col">
