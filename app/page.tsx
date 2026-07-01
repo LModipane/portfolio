@@ -217,46 +217,64 @@ export default async function Home() {
 				</div>
 			</header>
 			{/* About me Section */}
-			<section className="min-h-full w-full flex justify-center bg-white">
-				<div className="flex flex-col items-center p-8 shadow-lg mt-10 mb-5 w-full max-w-[90%]">
-					<h2 className="text-3xl font-semibold mb-4">About Me</h2>
-					<hr className="border-2 border-blue-500 w-full " />
-					<div className="mt-6">
-						<div className="text-2xl font-light text-gray-700/90 mx-auto text-center max-w-[88%]">
-							<p>
-								I am Lesedi Shaun Modipane, a Bachelor of Science Information System graduate, based
-								in Tshwane Pretoria South Africa. I specialise in software engineering with a strong
-								focus on building practical, data-drive applications that solve real-world problems.
-								A key part of my motivation is my passion for developing software that improves
-								township life and empowers local businesses by making digital tools more accessible,
-								useful, and impactful in everyday community settings.
-								<br className="min-h-10" />
-								My work spans web development, AI systems, and cloud-based architectures, with a
-								growing interest in applying machine learning to prediction systems and decision
-								support tools. I value clarity in design, efficiency in execution, and continuous
-								learning, especially in fast-evolving technical fields like AI and distributed
-								systems. I enjoy translating complex technical ideas into usable products, with a
-								strong emphasis on reliability, scalability, and user experience. My core strengths
-								lie in JavaScript/TypeScript development, modern web frameworks, and building
-								systems that combine data and intelligence to generate meaningful outcomes.
-							</p>
-							<br />
-							<p className="text-start">
-								Want to understand how I think and build? Take a look at my{' '}
-								<span className="text-purple-700 cursor-pointer underline decoration-dotted hover:text-blue-500">
-									<a href="#Projects">Projects</a>
-								</span>
-								,{' '}
-								<span className="text-purple-700 cursor-pointer underline decoration-dotted hover:text-blue-500">
-									<a href="#Blogs">Blog</a>
-								</span>
-								, or{' '}
-								<span className="text-purple-700 cursor-pointer underline decoration-dotted hover:text-blue-500">
-									<a href="#Career">Career Journey</a>
-								</span>{' '}
-								where I break down my work, ideas, and carrer in more detail.
-							</p>
-						</div>
+			<section className="w-full flex justify-center bg-slate-50 px-4 py-16">
+				<div className="w-full max-w-4xl bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-10">
+					{/* Title */}
+					<div className="flex flex-col items-center text-center gap-3 mb-8">
+						<h2 className="text-2xl sm:text-3xl font-semibold text-slate-900">About Me</h2>
+						<div className="w-16 h-1 bg-linear-to-r from-blue-500 to-purple-600 rounded-full" />
+					</div>
+
+					{/* Content */}
+					<div className="space-y-6 text-slate-700 leading-relaxed text-sm md:text-base">
+						<p>
+							I am Lesedi Shaun Modipane, a Bachelor of Science in Information Systems graduate
+							based in Tshwane, Pretoria, South Africa. I specialise in software engineering with a
+							focus on building practical, data-driven applications that solve real-world problems.
+						</p>
+
+						<p>
+							A key motivation in my work is developing software that improves township life and
+							empowers local businesses by making digital tools more accessible, useful, and
+							impactful in everyday community settings.
+						</p>
+
+						<p>
+							My experience spans web development, AI systems, and cloud-based architectures, with a
+							growing interest in machine learning for prediction systems and decision support
+							tools. I value clarity in design, efficiency in execution, and continuous learning in
+							fast-evolving technical fields.
+						</p>
+
+						<p>
+							I enjoy translating complex technical ideas into usable products with a strong
+							emphasis on reliability, scalability, and user experience. My core strengths lie in
+							JavaScript/TypeScript development, modern web frameworks, and building systems that
+							combine data and intelligence.
+						</p>
+					</div>
+
+					{/* CTA Links */}
+					<div className="mt-10 flex flex-col sm:flex-row flex-wrap gap-3 text-sm">
+						<span className="text-slate-600">Explore:</span>
+
+						<a
+							href="#Projects"
+							className="text-blue-600 hover:text-blue-700 underline decoration-dotted underline-offset-4">
+							Projects
+						</a>
+
+						<a
+							href="#Blogs"
+							className="text-blue-600 hover:text-blue-700 underline decoration-dotted underline-offset-4">
+							Blog
+						</a>
+
+						<a
+							href="#Career"
+							className="text-blue-600 hover:text-blue-700 underline decoration-dotted underline-offset-4">
+							Career Journey
+						</a>
 					</div>
 				</div>
 			</section>
