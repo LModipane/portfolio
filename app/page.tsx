@@ -347,46 +347,61 @@ const ProjectCard = ({
 	description,
 	backgroundImageUrl,
 }: Project) => (
-	<div className="bg-gray-200 h-125 w-full z-10 hover:z-20 max-w-[30%] hover:p-1 -p-1 rounded-lg bg-linear-to-r from-blue-500 to-purple-600 border-4 overflow-hidden border-gray-300 hover:border-0 mb-2 hover:scale-115 animate-gradient ease-in-out">
-		<Link href={`/project/${_id}`}>
-			<div className="bg-white h-full w-full flex flex-col rounded-sm">
-				<div className="relative h-40 w-full flex items-center">
-					<div className="relative h-40 w-full">
-						<Image
-							src={backgroundImageUrl}
-							alt={`${title} background`}
-							fill
-							className="object-cover object-center rounded-t-sm"
-						/>
-					</div>
-					<div className="absolute -bottom-10 h-28 w-28 rounded-full overflow-hidden bg-linear-to-tr from-blue-500/20 to-purple-600/20 animate-gradient flex items-center justify-center">
-						<Image src={logoUrl} alt={`${title} logo`} fill className="object-cover" />
+	<div className="group relative w-full max-w-[30%] min-w-65 rounded-2xl bg-linear-to-r from-blue-500 to-purple-600 p-0.5 hover:z-20 transition-all duration-300">
+		<Link href={`/project/${_id}`} className="block h-full">
+			<div className="relative h-full rounded-2xl bg-white overflow-hidden flex flex-col">
+				{/* Image section */}
+				<div className="relative h-40 w-full overflow-hidden">
+					<Image
+						src={backgroundImageUrl}
+						alt={`${title} background`}
+						fill
+						sizes="(max-width: 768px) 100vw, 33vw"
+						className="object-cover group-hover:scale-105 transition-transform duration-500"
+					/>
+				</div>
+
+				{/* Floating logo */}
+				<div className="absolute left-4 top-28 h-20 w-20 rounded-full overflow-hidden border-4 border-white bg-white shadow-md">
+					<Image src={logoUrl} alt={`${title} logo`} fill sizes="80px" className="object-cover" />
+				</div>
+
+				{/* Content */}
+				<div className="pt-12 px-4 flex flex-col gap-3">
+					<h3 className="text-xl font-bold text-slate-800 truncate">{title}</h3>
+
+					<p className="text-sm text-slate-600 line-clamp-4">{description}</p>
+
+					{/* Tools */}
+					<div className="flex flex-wrap gap-2">
+						{tools.map(obj => (
+							<span
+								key={obj._id}
+								className="text-xs px-2 py-1 rounded-full bg-slate-100 text-slate-700">
+								{obj.title}
+							</span>
+						))}
 					</div>
 				</div>
-				<h3 className="ml-26 mt-3 text-3xl font-bold text-gray-800 w-[72%] truncate">{title}</h3>
-				<div className="flex flex-col gap-y-2 mt-2 px-4">
-					<p className="mt-2 w-full text-gray-600 line-clamp-5 ">{description}</p>
-					{tools.map(obj => (
-						<div key={obj._id} className="bg-gray-200 w-fit text-gray-800 p-2 rounded-lg">
-							{obj.title}
-						</div>
-					))}
-				</div>
-				<div className="mt-auto flex gap-x-2 justify-end p-3">
+
+				{/* Footer */}
+				<div className="mt-auto flex justify-end gap-3 p-4 text-sm text-slate-700">
 					<a
 						href={linkGitHub}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="flex items-center gap-x-1">
-						<FileBraces size={24} />
-						code
+						className="flex items-center gap-1 hover:text-black transition">
+						<FileBraces size={18} />
+						Code
 					</a>
+
 					<a
 						href={linkLive}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="flex items-center gap-x-1">
-						<ExternalLink size={24} /> live
+						className="flex items-center gap-1 hover:text-black transition">
+						<ExternalLink size={18} />
+						Live
 					</a>
 				</div>
 			</div>
@@ -416,26 +431,45 @@ const SkillCard = ({ title, description, iconUrl }: Skill) => (
 );
 
 const BlogCard = ({ _id, headline, imageCardUrl, description, publishedAt }: Blog) => (
-	<div className="w-[50%] h-50">
+	<div className="group w-full sm:w-[50%]">
 		<Link href={`/blog/${_id}`}>
-			<div className="flex gap-2 h-full w-full text-black">
-				<div className="relative min-h-43.75 min-w-43.75">
+			<div className="h-full flex flex-col sm:flex-row rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+				{/* Image */}
+				<div className="relative w-full sm:w-44 aspect-square overflow-hidden bg-slate-100">
 					<Image
 						src={imageCardUrl}
-						alt={`blog ${_id} Image Card`}
+						alt={`blog ${_id} image`}
 						fill
-						className="object-center object-cover"
+						sizes="(max-width: 640px) 100vw, 176px"
+						className="object-cover group-hover:scale-105 transition-transform duration-500"
 					/>
 				</div>
-				<div className="flex flex-col gap-2 p-2">
-					<span className="flex items-center gap-3 text-sm">
-						<Clock size={15} /> {blogDate(publishedAt)}
-					</span>
-					<h3 className="text-lg font-bold capitalize">{headline}</h3>
-					<p className="text-sm line-clamp-2">{description}</p>
-					<div className="flex justify-end gap-4 mt-auto">
-						<span className="bg-gray-200 px-2 py-1 rounded-xl">Read time: 6 min</span>
-						<span className="bg-gray-200 px-2 py-1 rounded-xl">✨: 6</span>
+
+				{/* Content */}
+				<div className="flex flex-col flex-1 p-4 gap-3">
+					{/* Meta */}
+					<div className="flex items-center gap-2 text-xs text-slate-500">
+						<Clock size={14} />
+						<span>{blogDate(publishedAt)}</span>
+					</div>
+
+					{/* Title */}
+					<h3 className="text-base sm:text-lg font-semibold text-slate-900 leading-snug line-clamp-2">
+						{headline}
+					</h3>
+
+					{/* Description */}
+					<p className="text-sm text-slate-600 line-clamp-2">{description}</p>
+
+					{/* Footer */}
+					<div className="mt-auto flex flex-wrap gap-2 pt-2">
+						<span className="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+							Read time: 6 min
+						</span>
+
+						<span className="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+							✨ 6
+						</span>
 					</div>
 				</div>
 			</div>
@@ -481,48 +515,62 @@ const CareerCard = ({
 				index % 2 === 0 ? 'mr-auto' : 'ml-auto',
 			)}>
 			<div className="bg-gray-200 min-h-full w-full hover:p-0.75 rounded-lg bg-linear-to-r from-blue-500 to-purple-600 animate-gradient overflow-hidden group/card">
-				<div className="bg-white h-full w-full rounded-lg flex flex-col p-4 overflow-hidden ">
-					<div className=" flex items-center gap-2 mt-5">
+				<div className="group/card relative w-full h-full border border-slate-200 bg-white backdrop-blur-sm shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden p-5">
+					{/* Header */}
+					<div className="flex items-start justify-between gap-4">
 						<div className="flex flex-col">
-							<h5 className="font-bold text-xl mb-3 text-slate-800">{role}</h5>
-							<Link href={link}>
-								<div className="flex items-center gap-2 text-md group hover:underline">
-									<div className="relative w-5 h-5 overflow-hidden">
-										<Image
-											src={logoUrl}
-											alt={`${name} - logo`}
-											fill
-											className="object-cover object-center rounded-full"
-										/>
-									</div>
-									<span>{name}</span>
-									<ExternalLink size={15} className="hidden group-hover:block text-slate-900" />
+							<h3 className="text-xl font-semibold text-slate-900 leading-tight">{role}</h3>
+
+							<Link
+								href={link}
+								className="mt-1 inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 group/link transition">
+								<div className="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-slate-200">
+									<Image src={logoUrl} alt={`${name} logo`} fill className="object-cover" />
 								</div>
+
+								<span className="font-medium">{name}</span>
+
+								<ExternalLink
+									size={14}
+									className="opacity-0 group-hover/link:opacity-100 transition"
+								/>
 							</Link>
 						</div>
-						<span className="border-2 border-gray-700 group-hover/card:border-0 bg-gray-400 group-hover/card:bg-linear-to-tr from-blue-500 to-purple-600 p-2 rounded-full ml-auto text-gray-300 group-hover/card:text-white">
-							<GraduationCap size={30} />
-						</span>
-					</div>
-					<div className="flex gap-4 text-xs items-center mt-3 text-slate-800">
-						<div className="flex gap-1 items-center">
-							<CalendarFold size={17} />
-							<span>{careerData(startDate)}</span>-
-							{endDate ? <span>{careerData(endDate)}</span> : 'Present'}
+
+						{/* Icon badge */}
+						<div className="shrink-0">
+							<div className="p-2.5 rounded-xl bg-linear-to-tr from-blue-500 to-violet-600 text-white shadow-sm group-hover/card:scale-105 transition-transform">
+								<GraduationCap size={22} />
+							</div>
 						</div>
-						<div className="flex gap-1 items-center">
-							<MapPin size={17} />
+					</div>
+
+					{/* Meta */}
+					<div className="mt-4 flex flex-wrap gap-3 text-xs text-slate-600">
+						<div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100">
+							<CalendarFold size={14} />
+							<span>
+								{careerData(startDate)} — {endDate ? careerData(endDate) : 'Present'}
+							</span>
+						</div>
+
+						<div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100">
+							<MapPin size={14} />
 							<span>{locationType === 'in-office' ? location : locationType}</span>
 						</div>
 					</div>
-					<div className="mt-4 text-slate-700 text-md">
-						<p>{description}</p>
-					</div>
-					<div className="mt-4">
+
+					{/* Description */}
+					<p className="mt-4 text-sm leading-relaxed text-slate-700">{description}</p>
+
+					{/* Tools */}
+					<div className="mt-4 flex flex-wrap gap-2">
 						{tools.map(obj => (
-							<div key={obj._id} className="bg-gray-200 w-fit text-gray-800 p-2 rounded-lg">
+							<span
+								key={obj._id}
+								className="text-xs px-2.5 py-1 rounded-full bg-slate-900/5 text-slate-700 border border-slate-200 hover:bg-slate-900/10 transition">
 								{obj.title}
-							</div>
+							</span>
 						))}
 					</div>
 				</div>
