@@ -202,7 +202,9 @@ export default async function Home() {
 							rel="noopener noreferrer"
 							className="flex items-center gap-2 hover:text-blue-600 transition">
 							<Image src={linkinlogo} alt="LinkedIn" width={28} height={28} />
-							LinkedIn
+							<span className="text-slate-900 hover:text-blue-600 transition hidden md:block">
+								LinkedIn
+							</span>
 						</a>
 
 						<a
@@ -211,7 +213,9 @@ export default async function Home() {
 							rel="noopener noreferrer"
 							className="flex items-center gap-2 hover:text-slate-900 transition">
 							<Image src={gitHubLogo} alt="GitHub" width={28} height={28} />
-							GitHub
+							<span className="text-slate-900 hover:text-blue-900 transition hidden md:block">
+								GitHub
+							</span>
 						</a>
 					</div>
 				</div>
@@ -279,7 +283,7 @@ export default async function Home() {
 				</div>
 			</section>
 			{/* Projects Section */}
-			<section id="Projects" className="h-fit min-h-full w-full flex justify-center bg-gray-100">
+			<section id="Projects" className="h-fit min-h-full w-full flex justify-center bg-slate-50">
 				<div className="flex flex-col p-8 shadow-lg mt-10 mb-5 h-fit w-full max-w-[90%] bg-white">
 					<h2 className="flex gap-x-2 text-3xl font-semibold mb-4 flex-end ">
 						<FolderKanban size={35} />
@@ -294,7 +298,7 @@ export default async function Home() {
 				</div>
 			</section>
 			{/* Skills Section */}
-			<section id="skills" className="h-fit min-h-full w-full flex justify-center bg-gray-100">
+			<section id="skills" className="h-fit min-h-full w-full flex justify-center bg-slate-50">
 				<div className="flex flex-col p-8 shadow-lg mt-10 mb-5 min-h-full w-full max-w-[90%] bg-white">
 					<h2 className="flex gap-x-2 text-3xl font-semibold mb-4 flex-end ">
 						<FileCode2 size={35} />
@@ -308,7 +312,7 @@ export default async function Home() {
 					</div>
 				</div>
 			</section>
-			<section id="Blogs" className="h-fit min-h-full w-full flex justify-center bg-white">
+			<section id="Blogs" className="h-fit min-h-full w-full flex justify-center bg-slate-50">
 				<div className="flex flex-col p-8 shadow-lg mt-10 mb-5 h-full w-full max-w-[90%] bg-white">
 					<h2 className="flex gap-x-2 text-3xl font-semibold mb-4 flex-end ">
 						<Newspaper size={35} />
@@ -329,7 +333,7 @@ export default async function Home() {
 					</div>
 				</div>
 			</section>
-			<section id="Career" className="h-fit min-h-full w-full flex justify-center bg-gray-100">
+			<section id="Career" className="h-fit min-h-full w-full flex justify-center bg-slate-50">
 				<div className="flex flex-col p-8 shadow-lg mt-10 mb-5 h-full w-full max-w-[90%] bg-white">
 					<h2 className="flex gap-x-2 text-3xl font-semibold mb-4 flex-end ">
 						<Newspaper size={35} />
