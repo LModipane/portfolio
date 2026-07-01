@@ -291,7 +291,7 @@ export default async function Home() {
 						My Projects
 					</h2>
 					<hr className="h-2 border-0 bg-linear-to-r from-blue-500 to-purple-500" />
-					<div className="mt-6 flex justify-center flex-wrap  gap-4 w-full">
+					<div className="mt-6 flex flex-wrap items-center gap-4 w-full">
 						{projects.map(obj => (
 							<ProjectCard key={obj._id} {...obj} />
 						))}
@@ -374,10 +374,10 @@ const ProjectCard = ({
 	description,
 	backgroundImageUrl,
 }: Project) => (
-	<div className="group relative w-full max-w-[30%] min-w-65 rounded-2xl bg-linear-to-r from-blue-500 to-purple-600 p-0.5 hover:z-20 transition-all duration-300">
+	<div className="group relative w-full max-w-[30%] min-w-65 rounded-2xl p-0.5 bg-gray-300 hover:bg-linear-to-r from-blue-500 via-purple-500 to-blue-500 bg-size-[200%_200%] transition-all duration-300 hover:z-20 hover:animate-borderMove">
 		<Link href={`/project/${_id}`} className="block h-full">
 			<div className="relative h-full rounded-2xl bg-white overflow-hidden flex flex-col">
-				{/* Image section */}
+				{/* Image */}
 				<div className="relative h-40 w-full overflow-hidden">
 					<Image
 						src={backgroundImageUrl}
