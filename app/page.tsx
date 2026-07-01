@@ -195,7 +195,7 @@ export default async function Home() {
 					</div>
 
 					{/* Social links */}
-					<div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-slate-700">
+					<div className="flex flex-row gap-4 sm:gap-8 text-slate-700">
 						<a
 							href="https://linkedin.com/in/shaunlesedi"
 							target="_blank"
@@ -312,6 +312,7 @@ export default async function Home() {
 					</div>
 				</div>
 			</section>
+			{/* Blogs Section */}
 			<section id="Blogs" className="h-fit min-h-full w-full flex justify-center bg-slate-50">
 				<div className="flex flex-col p-8 shadow-lg mt-10 mb-5 h-full w-full max-w-[90%] bg-white">
 					<h2 className="flex gap-x-2 text-3xl font-semibold mb-4 flex-end ">
@@ -333,6 +334,7 @@ export default async function Home() {
 					</div>
 				</div>
 			</section>
+			{/* career Section */}
 			<section id="Career" className="h-fit min-h-full w-full flex justify-center bg-slate-50">
 				<div className="flex flex-col p-8 shadow-lg mt-10 mb-5 h-full w-full max-w-[90%] bg-white">
 					<h2 className="flex gap-x-2 text-3xl font-semibold mb-4 flex-end ">
@@ -347,6 +349,7 @@ export default async function Home() {
 					</div>
 				</div>
 			</section>
+			{/* contact Section */}
 			<footer
 				id="footer"
 				className="h-full w-full flex flex-col items-center justify-center p-8 bg-black text-white">
