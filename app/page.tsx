@@ -66,7 +66,7 @@ type Career = {
 	organisation: { name: string; logoUrl: string; location: string; link: string };
 };
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Revalidate the data every 60 seconds
 
 export default async function Home() {
 	const querys = {
@@ -155,62 +155,63 @@ export default async function Home() {
 	return (
 		<main className="h-full w-full text-black overflow-y-scroll">
 			{/* Hero section */}
-			<header className="min-h-full w-full flex items-center justify-center bg-gray-100">
-				<div className="flex flex-col items-center bg-white/80 border-2 border-gray-300/40 rounded-lg py-8 shadow-lg max-w-[98%]">
-					{/* Availability Tag */}
-					<div className="rounded-full p-0.5 bg-linear-to-r from-blue-500 to-purple-600 mb-2 animate-gradient lowercase animate-pulse duration-300">
-						<div className="bg-gray-100 rounded-full p-2">
-							<div className="flex items-center text-md font-extralight border-2 rounded-full bg-linear-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text animate-gradient">
-								<Sparkles className="mr-3 text-blue-500" size={18} />
-								I&apos;m Available, just one click away
-							</div>
-						</div>
+			<header className="w-full min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12">
+				<div className="w-full max-w-4xl flex flex-col items-center text-center gap-8">
+					{/* Availability badge */}
+					<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 bg-white shadow-sm text-sm text-slate-600">
+						<Sparkles size={16} className="text-purple-500" />
+						<span>I&apos;m available for new opportunities</span>
 					</div>
 
-					{/* Call to Action */}
-					<div className=" flex flex-col justify-center mx-auto px-4 py-8 w-full">
-						<h1 className="text-5xl font-semibold item-end text-slate-900">
-							{myName} <Titles roles={myRoles} />
-						</h1>
-						<h2 className="text-3xl font-extralight mt-6 mx-auto text-gray-600/80 text-center max-w-[80%]">
-							Looking to contribute Software, Cloud, & Data expertise to your next project,
-							let&apos;s schedule a{' '}
-							<span className="bg-linear-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text underline underline-offset-4 animate-gradient">
-								conversation and START BUILDING!!!
-							</span>
-						</h2>
-					</div>
+					{/* Hero title */}
+					<h1 className="text-3xl sm:text-5xl font-semibold text-slate-900 leading-tight">
+						{myName}
+						<span className="block mt-3">
+							<Titles roles={myRoles} />
+						</span>
+					</h1>
 
-					{/* Call to Action Buttons */}
-					<div className="flex justify-center mt-2 items-center">
-						<button className="flex px-6 py-3 bg-slate-900 text-white rounded-3xl hover:bg-linear-to-r hover:from-blue-500 hover:to-purple-600 hover:scale-110 transition-colors duration-100 cursor-pointer">
-							Let&apos;s Connect <Mail className="ml-2" size={20} />
+					{/* Subtitle */}
+					<h2 className="text-base sm:text-xl text-slate-600 max-w-2xl leading-relaxed">
+						Looking to contribute Software, Cloud, & Data expertise to your next project. Let&apos;s
+						schedule a{' '}
+						<span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600 font-medium">
+							conversation and start building
+						</span>
+						.
+					</h2>
+
+					{/* CTA buttons */}
+					<div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+						<button className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition">
+							Let&apos;s Connect
+							<Mail size={18} />
 						</button>
-						<div className="ml-8 flex group justify-center items-center rounded-3xl bg-slate-800 hover:bg-linear-to-r hover:from-blue-500 hover:to-purple-600 p-0.5 cursor-pointer transition-all duration-150 hover:scale-110">
-							<div className="bg-white rounded-[calc(1.5rem-2px)] px-6 py-3">
-								<button className="flex items-center text-slate-900 bg-linear-to-r from-blue-500 to-purple-600 bg-clip-text  transition-all duration-100 cursor-pointer">
-									<span className="group-hover:text-transparent">Download Resume</span>
-									<Download className="ml-2 group-hover:text-purple-600" size={20} />
-								</button>
-							</div>
-						</div>
+
+						<button className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 hover:border-slate-400 hover:shadow-sm transition">
+							<Download size={18} />
+							Download Resume
+						</button>
 					</div>
 
-					{/* Social Links */}
-					<div className="flex justify-center mt-8 space-x-4 text-slate-800">
+					{/* Social links */}
+					<div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-slate-700">
 						<a
 							href="https://linkedin.com/in/shaunlesedi"
 							target="_blank"
 							rel="noopener noreferrer"
-							className=" hover:text-blue-500 transition-colors duration-300 flex flex-col items-center">
-							<Image src={linkinlogo} alt="Logo" width={35} height={35} /> LinkedIn
+							className="flex items-center gap-2 hover:text-blue-600 transition">
+							<Image src={linkinlogo} alt="LinkedIn" width={28} height={28} />
+							LinkedIn
 						</a>
+
 						<a
 							href="https://github.com/shaunlesedi"
 							target="_blank"
 							rel="noopener noreferrer"
-							className=" hover:text-gray-500 transition-colors duration-300 flex flex-col items-center">
-							<Image src={gitHubLogo} alt="Logo" width={35} height={35} /> GitHub
+							className="flex items-center gap-2 hover:text-slate-900 transition">
+							<Image src={gitHubLogo} alt="GitHub" width={28} height={28} />
+							GitHub
 						</a>
 					</div>
 				</div>
