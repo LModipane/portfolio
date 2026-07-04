@@ -126,7 +126,7 @@ async function CommentsSection({ pageId, formStatus }: Props) {
 				<div className="mt-8 space-y-5">
 					{comments.length === 0 && (
 						<div className="flex flex-col items-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-8 py-12 text-center">
-							<div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-violet-600 text-3xl">
+							<div className="flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-blue-500 to-violet-600 text-3xl">
 								💬
 							</div>
 
@@ -155,14 +155,6 @@ async function CommentsSection({ pageId, formStatus }: Props) {
 }
 
 export default CommentsSection;
-
-type CommentCardProps = {
-	authorName: string;
-	authorEmail: string;
-	comment: string;
-	createdAt: string;
-	avatarUrl?: string;
-};
 
 export function CommentCard({ authorName, authorEmail, feedback, createdAt, avatarUrl }: Comment) {
 	return (
