@@ -3,7 +3,7 @@
 import { db } from '@/lib/db';
 import { commentTable } from '@/lib/db/schema';
 import { emailler } from '@/lib/emailler';
-import { Comment } from '@/type';
+import { Comment } from '@/types';
 import { redirect } from 'next/navigation';
 
 export async function create_comment(

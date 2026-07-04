@@ -5,7 +5,7 @@ import { db } from '@/lib/db';
 import FeedbackTextarea from './feedbackTextArea';
 import { create_comment } from '@/actions/create_comment';
 import { MoreHorizontal } from 'lucide-react';
-import { Comment } from '@/type';
+import { Comment } from '@/types';
 
 type Props = {
 	pageId: string;
