@@ -40,7 +40,7 @@ export default async function Home({ params }: { params: Promise<{ projectId: st
 	console.log(content);
 
 	return (
-		<main className="h-full w-full flex flex-col text-slate-800 bg-white overflow-x-hidden">
+		<main className="h-full w-full flex flex-col items-center text-slate-800 bg-white overflow-x-hidden">
 			<header className="w-full h-fit">
 				<div className="relative w-full h-40">
 					<Image
@@ -70,7 +70,7 @@ export default async function Home({ params }: { params: Promise<{ projectId: st
 			{/* Comments */}
 			<CommentsSection/>
 			{/* footer */}
-			<footer className="h-full text-white bg-black mt-auto p-2 flex items-center justify-center">
+			<footer className="h-full w-full text-white bg-black mt-auto p-2 flex items-center justify-center">
 				footer
 			</footer>
 		</main>
