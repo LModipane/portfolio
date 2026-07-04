@@ -3,27 +3,29 @@
 import { db } from '@/lib/db';
 import { commentTable } from '@/lib/db/schema';
 import { emailler } from '@/lib/emailler';
+import { Comment } from '@/type';
 import { redirect } from 'next/navigation';
 
-export async function create_comment(pageId: string, data: FormData) {
-	const url = getPageUrl(pageId);
+export async function create_comment(
+	payload: Omit<Comment, 'feedback'> & { pageId: string },
+	data: FormData,
+) {
+	const url = getPageUrl(payload.pageId);
 	const feedback = data.get('feedback')?.toString().trim();
 
-	if (!feedback) {
-		redirect(`${url}?comment=missing_feedback`);
-	}
+	if (!feedback) redirect(`${url}?comment=missing_feedback`);
 
 	try {
 		await db.insert(commentTable).values({
-			pageId,
+			...payload,
 			feedback,
 		});
 
 		await emailler.sendMail({
 			to: process.env.EMAILLER_USER,
-			html: genEmail(pageId, feedback),
-			subject: `💬 New feedback on "${pageId}"`,
-			from: '"Portfolio Website" <modipanesh@gmail.com>',
+			html: genEmail(payload.pageId, feedback),
+			subject: `💬 New feedback on "${payload.pageId}"`,
+			from: `"Portfolio Website" <${payload}>`,
 		});
 	} catch (error) {
 		console.error(error);

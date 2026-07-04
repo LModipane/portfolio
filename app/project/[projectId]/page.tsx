@@ -21,6 +21,7 @@ export default async function Home({
 }) {
 	const { projectId } = await params;
 	const { comment } = await searchParams;
+	
 	const projectQuery = `*[_type == "projects" && slug.current == $projectId][0]{
 							"coverImageUrl": backgroundImage.asset -> url,
 							"iconUrl": logo.asset -> url,
@@ -62,7 +63,7 @@ export default async function Home({
 			{/* Body: */}
 			<MarkdownSection content={content} />
 			{/* Comments */}
-			<CommentsSection pageId={`project:${projectId}`} comment={comment} />
+			<CommentsSection pageId={`project:${projectId}`} formStatus={comment} />
 			{/* footer */}
 			<footer className="h-full w-full text-white bg-black mt-auto p-2 flex items-center justify-center">
 				footer
