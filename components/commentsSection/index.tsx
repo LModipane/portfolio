@@ -5,17 +5,19 @@ function CommentsSection() {
 		<section className="w-full max-w-[70%] rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 			<div className="mb-5">
 				<span className="mb-2 inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600">
-					Feedback
+					Let&apos;s Connect
 				</span>
 
-				<h4 className="text-2xl font-bold tracking-tight text-slate-900">Tell me what you think</h4>
+				<h4 className="text-2xl font-bold tracking-tight text-slate-900 capitalize">
+					Tell Me what you think
+				</h4>
 
-				<p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
-					I&apos;d love to hear your thoughts, suggestions, or anything that could help improve your
-					experience.
+				<p className="mt-2 text-sm leading-6 text-slate-500">
+					If you&apos;re a developer with ideas to share, a hiring manager evaluating my work, or a
+					reader with questions or feedback, I&apos;d be glad to hear from you. Every message is
+					appreciated and helps create meaningful conversations around the project.
 				</p>
 			</div>
-
 			<form
 				action={undefined}
 				className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">

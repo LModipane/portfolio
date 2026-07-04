@@ -13,12 +13,13 @@ const FeedbackTextarea = () => {
 				name="feedback"
 				value={value}
 				onChange={e => setValue(e.target.value)}
+				placeholder="I'd appreciate your suggestion, concerns, or perceptive on my work..."
 				className="min-h-10 w-full rounded-xl border border-slate-200 bg-slate-50 p-4 outline-none focus:border-blue-500"
 			/>
 
 			<div className="mt-3 flex justify-between text-xs text-slate-500">
 				<span>{words} words</span>
-				<span>Your feedback helps improve the platform.</span>
+				<span>Your feedback helps to improve me, as a developer</span>
 			</div>
 		</>
 	);
