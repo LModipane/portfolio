@@ -3,13 +3,21 @@
 import { db } from '@/lib/db';
 import { commentTable } from '@/lib/db/schema';
 import { emailler } from '@/lib/emailler';
+import { redirect } from 'next/navigation';
 
 export async function create_comment(pageId: string, data: FormData) {
-	try {
-		const feedback = data.get('feedback') as string;
-		if (!feedback) return;
+	const url = getPageUrl(pageId);
+	const feedback = data.get('feedback')?.toString().trim();
 
-		await db.insert(commentTable).values({ feedback, pageId });
+	if (!feedback) {
+		redirect(`${url}?comment=missing_feedback`);
+	}
+
+	try {
+		await db.insert(commentTable).values({
+			pageId,
+			feedback,
+		});
 
 		await emailler.sendMail({
 			to: process.env.EMAILLER_USER,
@@ -18,10 +26,23 @@ export async function create_comment(pageId: string, data: FormData) {
 			from: '"Portfolio Website" <modipanesh@gmail.com>',
 		});
 	} catch (error) {
-		console.error('Failed to create comment', { error });
-		return;
+		console.error(error);
+
+		redirect(`${url}?comment=server_error`);
 	}
+
+	redirect(`${url}?comment=success`);
 }
+
+const getPageUrl = (pageId: string) => {
+	const index = pageId.indexOf(':');
+	if (index === -1) throw new Error('Error: Invalid Page Id Format!!!');
+
+	const page = pageId.slice(0, index);
+	const id = pageId.slice(index + 1);
+
+	return `/${page}/${id}`;
+};
 
 const genEmail = (pageId: string, feedback: string) => `<!DOCTYPE html>
                     <html lang="en">

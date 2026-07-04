@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
-import { CommentsSection, CopyButton, MarkdownSection, TooLongToRead } from '@/components/index';
-
+import { CommentsSection, MarkdownSection, TooLongToRead } from '@/components/index';
 
 type Project = {
 	title: string;
@@ -11,8 +10,17 @@ type Project = {
 	coverImageUrl: string;
 };
 
-export default async function Home({ params }: { params: Promise<{ projectId: string }> }) {
+export default async function Home({
+	params,
+	searchParams,
+}: {
+	params: Promise<{ projectId: string }>;
+	searchParams: Promise<{
+		comment?: string;
+	}>;
+}) {
 	const { projectId } = await params;
+	const { comment } = await searchParams;
 	const projectQuery = `*[_type == "projects" && slug.current == $projectId][0]{
 							"coverImageUrl": backgroundImage.asset -> url,
 							"iconUrl": logo.asset -> url,
@@ -24,7 +32,7 @@ export default async function Home({ params }: { params: Promise<{ projectId: st
 			projectId,
 		},
 	);
-	
+
 	return (
 		<main className="h-full w-full flex flex-col items-center text-slate-800 bg-white overflow-x-hidden">
 			<header className="w-full h-fit">
@@ -54,7 +62,7 @@ export default async function Home({ params }: { params: Promise<{ projectId: st
 			{/* Body: */}
 			<MarkdownSection content={content} />
 			{/* Comments */}
-			<CommentsSection pageId={`project:${projectId}`} />
+			<CommentsSection pageId={`project:${projectId}`} comment={comment} />
 			{/* footer */}
 			<footer className="h-full w-full text-white bg-black mt-auto p-2 flex items-center justify-center">
 				footer
