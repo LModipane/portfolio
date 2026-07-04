@@ -23,12 +23,12 @@ const FeedbackTextarea = () => {
 				onKeyDown={onKeyDown}
 				onChange={e => setValue(e.target.value)}
 				placeholder="I'd appreciate your suggestion, concerns, or perceptive on my work..."
-				className="min-h-10 w-full rounded-xl border border-slate-200 bg-slate-50 p-4 outline-none focus:border-blue-500"
+				className="min-h-10 w-full rounded-xl border border-slate-200 bg-slate-50 p-4 outline-none focus:border-blue-500 placeholder:text-xs md:placeholder:text-base"
 			/>
 
-			<div className="mt-3 flex justify-between text-xs text-slate-500">
+			<div className="mt-3 w-full flex justify-between md:text-xs text-[10px] text-slate-500 ">
 				<span>{words} words</span>
-				<span>Your feedback helps to improve me, as a developer</span>
+				<span className='max-w-[70%]'>Your feedback helps me to improve, as a developer</span>
 			</div>
 		</>
 	);

@@ -1,11 +1,11 @@
 import Text from './text';
 import Link from 'next/link';
-import Image from 'next/image';
 import { db } from '@/lib/db';
+import Image from 'next/image';
+import { Comment } from '@/types';
 import FeedbackTextarea from './feedbackTextArea';
 import { create_comment } from '@/actions/create_comment';
-import { MoreHorizontal } from 'lucide-react';
-import { Comment } from '@/types';
+import { EllipsisVertical } from 'lucide-react';
 
 type Props = {
 	pageId: string;
@@ -19,16 +19,18 @@ async function CommentsSection({ pageId, formStatus }: Props) {
 	});
 
 	return (
-		<section className="w-full max-w-[70%] my-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+		<section className="w-full md:max-w-[70%] max-w-[95%] my-6 rounded-2xl border border-slate-200 bg-white md:p-6 p-2 shadow-sm">
 			{/* Section Header */}
-			<div className="mb-5">
+			<div className="mb-5 px-3 pt-3">
 				<span className="mb-2 inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600">
 					Let&apos;s Connect
 				</span>
 
-				<h4 className="text-2xl font-bold tracking-tight text-slate-900">Tell me what you think</h4>
+				<h4 className="text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
+					Tell me what you think
+				</h4>
 
-				<p className="mt-2 text-sm leading-6 text-slate-500">
+				<p className="mt-2 text-xs leading-6 text-slate-500 md:text-sm pl-1">
 					If you&apos;re a developer with ideas to share, a hiring manager evaluating my work, or a
 					reader with questions or feedback, I&apos;d be glad to hear from you. Every message is
 					appreciated and helps create meaningful conversations around the project.
@@ -50,11 +52,11 @@ async function CommentsSection({ pageId, formStatus }: Props) {
 						</svg>
 					</div>
 
-					<h5 className="mt-5 text-xl font-semibold text-slate-900">
+					<h5 className="mt-5 text-lg font-semibold text-slate-900 md:text-xl">
 						Thank you for your feedback!
 					</h5>
 
-					<p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-600">
+					<p className="mt-6 text-xs font-medium text-slate-700 md:text-sm">
 						I appreciate you taking the time to share your thoughts. Whether it was feedback, a
 						suggestion, a question, or a professional inquiry, your message has been received and
 						I&apos;ll review it as soon as possible.
@@ -84,13 +86,13 @@ async function CommentsSection({ pageId, formStatus }: Props) {
 						authorName: 'Shaun',
 						authorEmail: 'Shaun@email',
 					})}
-					className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+					className="rounded-2xl border border-slate-200 bg-white md:p-5 p-3 shadow-sm">
 					<FeedbackTextarea />
 
 					<div className="mt-5 flex justify-end">
 						<button
 							type="submit"
-							className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700">
+							className="rounded-xl bg-blue-600 px-5 py-2.5 text-[12px] md:text-sm font-semibold text-white transition hover:bg-blue-700">
 							<Text />
 						</button>
 					</div>
@@ -100,7 +102,7 @@ async function CommentsSection({ pageId, formStatus }: Props) {
 			<div className="mt-10 border-t border-slate-200 pt-8">
 				<div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
 					<div>
-						<div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1">
+						<div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-1">
 							<span className="text-xs font-semibold uppercase tracking-wider text-slate-600">
 								{comments.length === 0 && 'Start'} Discussion
 							</span>
@@ -112,11 +114,11 @@ async function CommentsSection({ pageId, formStatus }: Props) {
 							)}
 						</div>
 
-						<h5 className="mt-3 text-2xl font-bold tracking-tight text-slate-900">
+						<h5 className="mt-3 text-xl font-bold tracking-tight text-slate-900 md:text-2xl px-2">
 							Community Comments
 						</h5>
 
-						<p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
+						<p className="mt-2 max-w-2xl text-xs leading-6 text-slate-500 md:text-sm px-3">
 							Read what others have shared about this project. Questions, constructive feedback, and
 							thoughtful discussions are always welcome.
 						</p>
@@ -130,16 +132,16 @@ async function CommentsSection({ pageId, formStatus }: Props) {
 								💬
 							</div>
 
-							<h6 className="mt-5 text-xl font-semibold text-slate-900">
+							<h6 className="mt-5 text-lg font-semibold text-slate-900 md:text-xl">
 								Be the first to start the conversation
 							</h6>
 
-							<p className="mt-3 max-w-lg text-sm leading-7 text-slate-600">
+							<p className="mt-3 max-w-lg text-xs leading-7 text-slate-600 md:text-sm">
 								No one has commented yet. Share your thoughts, ask a question, or offer some
 								constructive feedback. Every great discussion starts with a single comment.
 							</p>
 
-							<p className="mt-5 rounded-full bg-amber-50 px-4 py-2 text-xs font-medium text-amber-700">
+							<p className="mt-5 rounded-full bg-amber-50 px-4 py-2 text-[11px] font-medium text-amber-700 md:text-xs">
 								✨ Rumour has it the first commenter gets a little extra luck in their career. No
 								guarantees—but it&apos;s worth a shot.
 							</p>
@@ -158,43 +160,45 @@ export default CommentsSection;
 
 export function CommentCard({ authorName, authorEmail, feedback, createdAt, avatarUrl }: Comment) {
 	return (
-		<div className="group flex gap-4 bg-white p-5 transition-all duration-200 hover:border-slate-300 hover:shadow-md">
+		<div className="group flex gap-2 bg-white md:p-5 p-2 transition-all duration-200 hover:border-slate-300 hover:shadow-md ">
 			{/* Avatar */}
 			<div className="shrink-0">
 				{avatarUrl ? (
 					<Image
 						src={avatarUrl}
 						alt={authorName}
-						className="h-12 w-12 rounded-full border border-slate-200 object-cover"
+						className="md:h-12 md:w-12 h-6 w-6 rounded-full border border-slate-200 object-cover"
 					/>
 				) : (
-					<div className="flex h-12 w-12 items-center justify-center rounded-full bg-linear-to-br from-blue-500 to-violet-600 text-base font-semibold text-white">
+					<div className="flex md:h-12 md:w-12 h-7 w-7 items-center justify-center rounded-full bg-linear-to-br from-blue-500 to-violet-600 text-base font-semibold text-white">
 						{authorName.charAt(0).toUpperCase()}
 					</div>
 				)}
 			</div>
 
 			{/* Content */}
-			<div className="min-w-0 flex-1">
+			<div className="flex-1 ">
 				<div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-					<h5 className="font-semibold text-slate-900">{authorName}</h5>
+					<h5 className="text-sm font-semibold text-slate-900 md:text-base">{authorName}</h5>
 
-					<span className="text-sm text-slate-500">#{authorEmail}</span>
+					<span className="text-xs text-slate-500 md:text-sm">#{authorEmail}</span>
 
 					<span className="text-xs text-slate-400">•</span>
 
-					<time className="text-xs text-slate-400">{createdAt?.toDateString()}</time>
+					<time className="text-[11px] text-slate-400 md:text-xs">{createdAt?.toDateString()}</time>
 				</div>
 
-				<p className="mt-3 whitespace-pre-wrap leading-7 text-slate-700">{feedback}</p>
+				<p className="mt-3 whitespace-pre-wrap text-sm leading-7 text-slate-700 md:text-base ">
+					{feedback}
+				</p>
 			</div>
 
 			{/* Menu */}
 			<button
 				type="button"
-				className="rounded-lg p-2 text-slate-400 opacity-0 transition-all hover:bg-slate-100 hover:text-slate-700 group-hover:opacity-100"
+				className="rounded-lg p-2  text-slate-400 md:opacity-0 max-w-2 transition-all hover:bg-slate-100 hover:text-slate-700 group-hover:opacity-100"
 				aria-label="Comment options">
-				<MoreHorizontal className="h-5 w-5" />
+				<EllipsisVertical className="h-5 w-5" />
 			</button>
 		</div>
 	);
@@ -221,9 +225,9 @@ const FeedbackError = ({ comment }: FeedbackErrorProps) =>
 			</div>
 
 			<div>
-				<h5 className="text-sm font-semibold text-red-900">Unable to submit feedback</h5>
+				<h5 className="text-xs font-semibold text-red-900 md:text-sm">Unable to submit feedback</h5>
 
-				<p className="mt-1 text-sm leading-6 text-red-700">{comment}</p>
+				<p className="mt-1 text-xs leading-6 text-red-700 md:text-sm">{comment}</p>
 			</div>
 		</div>
 	);
