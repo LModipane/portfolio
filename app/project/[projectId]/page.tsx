@@ -1,19 +1,7 @@
 import Image from 'next/image';
-import { codeToHtml } from 'shiki';
-import remarkGfm from 'remark-gfm';
-import ReactMarkdown from 'react-markdown';
 import { client } from '@/sanity/lib/client';
 import { CommentsSection, CopyButton, MarkdownSection, TooLongToRead } from '@/components/index';
 
-import {
-	Table,
-	TableRow,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-} from '@/components/ui/table';
-import { Quote } from 'lucide-react';
 
 type Project = {
 	title: string;
@@ -37,8 +25,6 @@ export default async function Home({ params }: { params: Promise<{ projectId: st
 		},
 	);
 	
-	console.log(content);
-
 	return (
 		<main className="h-full w-full flex flex-col items-center text-slate-800 bg-white overflow-x-hidden">
 			<header className="w-full h-fit">
@@ -66,9 +52,9 @@ export default async function Home({ params }: { params: Promise<{ projectId: st
 				</div>
 			</header>
 			{/* Body: */}
-			<MarkdownSection content={ content} />
+			<MarkdownSection content={content} />
 			{/* Comments */}
-			<CommentsSection/>
+			<CommentsSection pageId={`project:${projectId}`} />
 			{/* footer */}
 			<footer className="h-full w-full text-white bg-black mt-auto p-2 flex items-center justify-center">
 				footer

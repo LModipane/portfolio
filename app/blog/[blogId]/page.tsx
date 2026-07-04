@@ -8,7 +8,7 @@ export default async function Home({ params }: { params: Promise<{ blogId: strin
 			{/* Body: */}
 			<MarkdownSection content={null} />
 			{/* Comments */}
-			<CommentsSection />
+			<CommentsSection pageId={`blog:${blogId}`} />
 			{/* footer */}
 			<footer className="h-full text-white bg-black mt-auto p-2 flex items-center justify-center">
 				footer

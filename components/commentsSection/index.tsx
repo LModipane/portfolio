@@ -1,6 +1,11 @@
 import FeedbackTextarea from './feedbackTextArea';
+import { create_comment } from '@/actions/create_comment';
 
-function CommentsSection() {
+type Props = {
+	pageId: string
+}
+
+function CommentsSection({ pageId}:Props) {
 	return (
 		<section className="w-full max-w-[70%] rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 			<div className="mb-5">
@@ -19,7 +24,7 @@ function CommentsSection() {
 				</p>
 			</div>
 			<form
-				action={undefined}
+				action={create_comment.bind(null, pageId)}
 				className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
 				<FeedbackTextarea />
 
