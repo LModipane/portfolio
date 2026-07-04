@@ -1,5 +1,6 @@
 import FeedbackTextarea from './feedbackTextArea';
 import { create_comment } from '@/actions/create_comment';
+import Text from "./text"
 
 type Props = {
 	pageId: string
@@ -32,7 +33,7 @@ function CommentsSection({ pageId}:Props) {
 					<button
 						type="submit"
 						className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700">
-						Send Feedback
+						<Text/>
 					</button>
 				</div>
 			</form>

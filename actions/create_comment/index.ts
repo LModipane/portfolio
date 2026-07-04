@@ -12,13 +12,14 @@ export async function create_comment(pageId: string, data: FormData) {
 		await db.insert(commentTable).values({ feedback, pageId });
 
 		await emailler.sendMail({
-			from: '"Portfolio Website" <modipanesh@gmail.com>',
 			to: process.env.EMAILLER_USER,
-			subject: `💬 New feedback on "${pageId}"`,
 			html: genEmail(pageId, feedback),
+			subject: `💬 New feedback on "${pageId}"`,
+			from: '"Portfolio Website" <modipanesh@gmail.com>',
 		});
 	} catch (error) {
 		console.error('Failed to create comment', { error });
+		return;
 	}
 }
 
