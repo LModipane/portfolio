@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { db } from '@/lib/db';
 import Image from 'next/image';
 import { Comment } from '@/types';
+import { create_comment } from '@/actions';
 import FeedbackTextarea from './feedbackTextArea';
-import { create_comment } from '@/actions/create_comment';
+import { OpenAuthModelButton} from "./ActionButton"
 import { EllipsisVertical } from 'lucide-react';
+import { authenticateUser } from '@/lib/nextAuth/authenticateUser';
 
 type Props = {
 	pageId: string;
@@ -13,6 +15,8 @@ type Props = {
 };
 
 async function CommentsSection({ pageId, formStatus }: Props) {
+	const profile = await authenticateUser();
+
 	const feedbackSuccess = formStatus === 'success';
 	const comments: Comment[] = await db.query.commentTable.findMany({
 		where: (table, { eq }) => eq(table.pageId, pageId),
@@ -81,20 +85,29 @@ async function CommentsSection({ pageId, formStatus }: Props) {
 			) : (
 				// Section Forrm
 				<form
-					action={create_comment.bind(null, {
-						pageId,
-						authorName: 'Shaun',
-						authorEmail: 'Shaun@email',
-					})}
+					action={
+						profile
+							? create_comment.bind(null, {
+									pageId,
+									profileId: profile.id!,
+									authorName: profile.name,
+									authorEmail: profile.email,
+								})
+							: undefined
+					}
 					className="rounded-2xl border border-slate-200 bg-white md:p-5 p-3 shadow-sm">
 					<FeedbackTextarea />
 
 					<div className="mt-5 flex justify-end">
-						<button
-							type="submit"
-							className="rounded-xl bg-blue-600 px-5 py-2.5 text-[12px] md:text-sm font-semibold text-white transition hover:bg-blue-700">
-							<Text />
-						</button>
+						{profile ? (
+							<button
+								type="submit"
+								className="rounded-xl bg-blue-600 px-5 py-2.5 text-[12px] md:text-sm font-semibold text-white transition hover:bg-blue-700">
+								<Text />
+							</button>
+						) : (
+							<OpenAuthModelButton />
+						)}
 					</div>
 				</form>
 			)}

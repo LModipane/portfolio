@@ -6,7 +6,7 @@ import { emailler } from '@/lib/emailler';
 import { Comment } from '@/types';
 import { redirect } from 'next/navigation';
 
-export async function create_comment(
+async function create_comment(
 	payload: Omit<Comment, 'feedback'> & { pageId: string },
 	data: FormData,
 ) {
@@ -35,6 +35,8 @@ export async function create_comment(
 
 	redirect(`${url}?comment=success`);
 }
+
+export default create_comment;
 
 const getPageUrl = (pageId: string) => {
 	const index = pageId.indexOf(':');
