@@ -10,7 +10,7 @@ const Text = () => {
 			{'Sending...'} <Loader size={20} className="animate-spin" />{' '}
 		</span>
 	) : (
-		'Send Feedback'
+		'Leave Feedback'
 	);
 };
 

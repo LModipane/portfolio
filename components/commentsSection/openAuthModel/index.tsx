@@ -10,7 +10,7 @@ const OpenAuthModel = () => {
 			type="button"
 			onClick={() => onOpen('AUTH')}
 			className="rounded-xl bg-blue-600 px-5 py-2.5 text-[12px] md:text-sm font-semibold text-white transition hover:bg-blue-700 capitalize">
-			send feedback
+			leave feedback
 		</button>
 	);
 };
