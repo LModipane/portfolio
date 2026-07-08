@@ -164,7 +164,7 @@ export default async function Home() {
 					</div>
 
 					{/* Hero title */}
-					<h1 className="text-3xl sm:text-5xl font-semibold text-slate-900 leading-tight">
+					<h1 className="text-3xl sm:text-6xl font-semibold text-slate-900 leading-tight">
 						{myName}
 						<span className="block mt-3">
 							<Titles roles={myRoles} />
@@ -172,7 +172,7 @@ export default async function Home() {
 					</h1>
 
 					{/* Subtitle */}
-					<h2 className="text-base sm:text-xl text-slate-800 max-w-2xl leading-relaxed">
+					<h2 className="text-lg sm:text-xl text-slate-700 max-w-2xl leading-relaxed capitalize">
 						Looking to contribute Software, Cloud, & Data expertise to your next project. Let&apos;s
 						schedule a{' '}
 						<span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600 font-medium">
