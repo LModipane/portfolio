@@ -1,16 +1,18 @@
-"use client"
+'use client';
+
+import { useModel } from '@/hooks';
 
 const OpenAuthModel = () => {
-  const openModel = () => { }
+	const { onOpen } = useModel();
 
-  return (
+	return (
 		<button
 			type="button"
-			onClick={openModel}
+			onClick={() => onOpen('AUTH')}
 			className="rounded-xl bg-blue-600 px-5 py-2.5 text-[12px] md:text-sm font-semibold text-white transition hover:bg-blue-700 capitalize">
 			send feedback
 		</button>
 	);
-}
+};
 
-export default OpenAuthModel
+export default OpenAuthModel;

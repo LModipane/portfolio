@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Comment } from '@/types';
 import { create_comment } from '@/actions';
 import FeedbackTextarea from './feedbackTextArea';
-import { OpenAuthModelButton} from "./ActionButton"
+import  OpenAuthModelButton from "./openAuthModel"
 import { EllipsisVertical } from 'lucide-react';
 import { authenticateUser } from '@/lib/nextAuth/authenticateUser';
 

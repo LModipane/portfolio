@@ -1,9 +1,14 @@
+import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
+import { getServerSession } from 'next-auth';
+import { AuthModel } from '@/components/models';
+import AuthProvider from '@/components/AuthProvider';
+import { authOptions } from '@/lib/nextAuth/options';
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
-import './globals.css';
-import { cn } from "@/lib/utils";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+import './globals.css';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -26,17 +31,41 @@ export const metadata: Metadata = {
 			rel: 'icon',
 			url: '/person.svg',
 		},
-	}
+	},
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const session = await getServerSession(authOptions);
+	
 	return (
-		<html lang="en" className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}>
-			<body className="h-screen w-screen">{children}</body>
-		</html>
+		<AuthProvider session={session}>
+			<html
+				lang="en"
+				className={cn(
+					'h-full',
+					'antialiased',
+					geistSans.variable,
+					geistMono.variable,
+					'font-sans',
+					inter.variable,
+				)}>
+				<body className="h-screen w-screen">
+					{children}
+					<ModelProvider />
+				</body>
+			</html>
+		</AuthProvider>
+	);
+}
+
+function ModelProvider() {
+	return (
+		<>
+			<AuthModel />
+		</>
 	);
 }
