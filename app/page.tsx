@@ -178,8 +178,6 @@ export default async function Home() {
 		projects: Project[];
 	}>(query);
 
-	console.log(resumeList.length);
-
 	return (
 		<main className="h-full w-full text-black overflow-y-scroll">
 			{/* Hero section */}
@@ -200,7 +198,7 @@ export default async function Home() {
 					</h1>
 
 					{/* Subtitle */}
-					<h2 className="text-lg sm:text-xl text-slate-700 max-w-2xl leading-relaxed capitalize">
+					<h2 className="text-md md:text-xl text-slate-700 max-w-2xl leading-relaxed capitalize">
 						Looking to contribute Software, Cloud, & Data expertise to your next project. Let&apos;s
 						schedule{' '}
 						<span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600 font-medium hover:underline">
@@ -216,7 +214,7 @@ export default async function Home() {
 						</button>
 
 						<DropdownMenu>
-							<DropdownMenuTrigger className="group inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer">
+							<DropdownMenuTrigger className="group inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer">
 								<div className="rounded-lg bg-blue-50 p-1.5 text-blue-600 transition-colors group-hover:bg-blue-100">
 									<Download size={16} />
 								</div>
@@ -224,8 +222,7 @@ export default async function Home() {
 							</DropdownMenuTrigger>
 
 							<DropdownMenuContent
-								align="start"
-								side="bottom"
+								align="center"
 								className="w-80 rounded-2xl border border-slate-200 p-2 shadow-xl">
 								<DropdownMenuLabel className="pb-2">
 									<div className="flex items-start gap-3">
