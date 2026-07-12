@@ -17,7 +17,6 @@ import {
 	FileUser,
 	Sparkles,
 	Download,
-	FileText,
 	Newspaper,
 	FileCode2,
 	FileBraces,
