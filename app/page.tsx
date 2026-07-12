@@ -216,14 +216,11 @@ export default async function Home() {
 						</button>
 
 						<DropdownMenu>
-							<DropdownMenuTrigger asChild>
-								<button className="group inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer">
-									<div className="rounded-lg bg-blue-50 p-1.5 text-blue-600 transition-colors group-hover:bg-blue-100">
-										<Download size={16} />
-									</div>
-
-									<span>Download Resume</span>
-								</button>
+							<DropdownMenuTrigger className="group inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer">
+								<div className="rounded-lg bg-blue-50 p-1.5 text-blue-600 transition-colors group-hover:bg-blue-100">
+									<Download size={16} />
+								</div>
+								<span>Download Resume</span>
 							</DropdownMenuTrigger>
 
 							<DropdownMenuContent
@@ -243,7 +240,7 @@ export default async function Home() {
 
 								<DropdownMenuSeparator />
 
-								<ScrollArea className="min-h-0 h-40">
+								<ScrollArea className="min-h-0 h-40 pr-3">
 									<DropdownMenuGroup className="flex flex-col gap-4">
 										{resumeList.map(resume => (
 											<DropdownMenuItem
