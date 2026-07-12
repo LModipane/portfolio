@@ -10,9 +10,14 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/h
 import {
 	Mail,
 	Clock,
+	Brain,
+	Cloud,
+	Code2,
 	MapPin,
+	FileUser,
 	Sparkles,
 	Download,
+	FileText,
 	Newspaper,
 	FileCode2,
 	FileBraces,
@@ -21,6 +26,16 @@ import {
 	ExternalLink,
 	GraduationCap,
 } from 'lucide-react';
+
+import {
+	DropdownMenu,
+	DropdownMenuItem,
+	DropdownMenuGroup,
+	DropdownMenuLabel,
+	DropdownMenuContent,
+	DropdownMenuTrigger,
+	DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
 
 type Hero = {
 	myName: string;
@@ -188,10 +203,101 @@ export default async function Home() {
 							<Mail size={18} />
 						</button>
 
-						<button className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 hover:border-slate-400 hover:shadow-sm transition">
-							<Download size={18} />
-							Download Resume
-						</button>
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<button className="group inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer">
+									<div className="rounded-lg bg-blue-50 p-1.5 text-blue-600 transition-colors group-hover:bg-blue-100">
+										<Download size={16} />
+									</div>
+
+									<span>Download Resume</span>
+								</button>
+							</DropdownMenuTrigger>
+
+							<DropdownMenuContent
+								align="start"
+								side="bottom"
+								className="w-80 rounded-2xl border border-slate-200 p-2 shadow-xl">
+								<DropdownMenuLabel className="pb-2">
+									<div className="flex items-start gap-3">
+										<div>
+											<p className="font-semibold text-lg text-slate-800">Choose a Resume</p>
+											<p className="text-xs font-normal text-slate-500">
+												Select the version that best matches the role you&apos;re interested in.
+											</p>
+										</div>
+									</div>
+								</DropdownMenuLabel>
+
+								<DropdownMenuSeparator />
+
+								<DropdownMenuGroup>
+									<DropdownMenuItem className="cursor-pointer rounded-xl p-3 focus:bg-blue-50">
+										<div className="flex items-start gap-3">
+											<div className="rounded-lg bg-red-100 p-2">
+												<FileUser className="h-4 w-4 text-red-600" />
+											</div>
+
+											<div className="flex-1">
+												<p className="font-medium text-slate-900">General Resume</p>
+												<p className="text-xs text-slate-500">
+													A well-rounded overview of my technical skills, projects, education, and
+													professional experience suitable for a wide range of software and
+													technology roles.
+												</p>
+											</div>
+										</div>
+									</DropdownMenuItem>
+
+									<DropdownMenuItem className="cursor-pointer rounded-xl p-3 focus:bg-blue-50">
+										<div className="flex items-start gap-3">
+											<div className="rounded-lg bg-violet-100 p-2">
+												<Brain className="h-4 w-4 text-violet-600" />
+											</div>
+
+											<div className="flex-1">
+												<p className="font-medium text-slate-900">Data Science Resume</p>
+												<p className="text-xs text-slate-500">
+													Machine Learning, Analytics, Python, AI and data engineering experience.
+												</p>
+											</div>
+										</div>
+									</DropdownMenuItem>
+
+									<DropdownMenuItem className="cursor-pointer rounded-xl p-3 focus:bg-blue-50">
+										<div className="flex items-start gap-3">
+											<div className="rounded-lg bg-amber-100 p-2">
+												<Cloud className="h-4 w-4 text-amber-600" />
+											</div>
+
+											<div className="flex-1">
+												<p className="font-medium text-slate-900">Cloud Engineer Resume</p>
+												<p className="text-xs text-slate-500">
+													AWS, Docker, CI/CD, infrastructure, scalability and cloud-native
+													development.
+												</p>
+											</div>
+										</div>
+									</DropdownMenuItem>
+
+									<DropdownMenuItem className="cursor-pointer rounded-xl p-3 focus:bg-blue-50">
+										<div className="flex items-start gap-3">
+											<div className="rounded-lg bg-emerald-100 p-2">
+												<Code2 className="h-4 w-4 text-emerald-600" />
+											</div>
+
+											<div className="flex-1">
+												<p className="font-medium text-slate-900">Software Engineer Resume</p>
+												<p className="text-xs text-slate-500">
+													Full-stack web development, TypeScript, React, Next.js and backend
+													engineering.
+												</p>
+											</div>
+										</div>
+									</DropdownMenuItem>
+								</DropdownMenuGroup>
+							</DropdownMenuContent>
+						</DropdownMenu>
 					</div>
 
 					{/* Social links */}
