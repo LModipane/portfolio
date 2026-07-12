@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { Role } from '@/types';
 import { cn } from '@/lib/utils';
-import { Titles } from '@/components/index';
 import gitHubLogo from '../public/github.svg';
 import linkinlogo from '../public/linkedin.svg';
+import { DownloadResume, Titles } from '@/components/index';
 import { client as SanityClient } from '@/sanity/lib/client';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 
@@ -14,7 +15,6 @@ import {
 	Cloud,
 	Code2,
 	MapPin,
-	FileUser,
 	Sparkles,
 	Download,
 	Newspaper,
@@ -35,10 +35,19 @@ import {
 	DropdownMenuTrigger,
 	DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 type Hero = {
 	myName: string;
 	myRoles: string[];
+	resumeList: {
+		id: string;
+		url: string;
+		role: Role;
+		resumeName: string;
+		description: string;
+		orginalFileName: string;
+	}[];
 };
 
 type Project = {
@@ -87,7 +96,13 @@ export default async function Home() {
 		// Here is where i query for my hero section
 		hero: `*[_type == "heroSection"][0]{
 					myName,
-					myRoles
+					myRoles,
+					resumeList[]{
+						"id": asset->_id,
+						"url": asset->url,
+						resumeName, description, role,
+						"orginalFileName": asset->originalFilename,
+					}
 				},`,
 
 		// here I query for projects sections
@@ -157,7 +172,7 @@ export default async function Home() {
 		skills,
 		career,
 		projects,
-		hero: { myName, myRoles },
+		hero: { myName, myRoles, resumeList },
 	} = await SanityClient.fetch<{
 		hero: Hero;
 		blogs: Blog[];
@@ -165,6 +180,8 @@ export default async function Home() {
 		career: Career[];
 		projects: Project[];
 	}>(query);
+
+	console.log(resumeList.length);
 
 	return (
 		<main className="h-full w-full text-black overflow-y-scroll">
@@ -188,11 +205,10 @@ export default async function Home() {
 					{/* Subtitle */}
 					<h2 className="text-lg sm:text-xl text-slate-700 max-w-2xl leading-relaxed capitalize">
 						Looking to contribute Software, Cloud, & Data expertise to your next project. Let&apos;s
-						schedule a{' '}
-						<span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600 font-medium">
-							conversation and start building
+						schedule{' '}
+						<span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600 font-medium hover:underline">
+							a conversation and start building.
 						</span>
-						.
 					</h2>
 
 					{/* CTA buttons */}
@@ -220,9 +236,9 @@ export default async function Home() {
 								<DropdownMenuLabel className="pb-2">
 									<div className="flex items-start gap-3">
 										<div>
-											<p className="font-semibold text-lg text-slate-800">Choose a Resume</p>
+											<p className="font-semibold text-lg text-slate-800">Download My Resume</p>
 											<p className="text-xs font-normal text-slate-500">
-												Select the version that best matches the role you&apos;re interested in.
+												Select the version that best matches the role you&apos;re looking for.
 											</p>
 										</div>
 									</div>
@@ -230,71 +246,22 @@ export default async function Home() {
 
 								<DropdownMenuSeparator />
 
-								<DropdownMenuGroup>
-									<DropdownMenuItem className="cursor-pointer rounded-xl p-3 focus:bg-blue-50">
-										<div className="flex items-start gap-3">
-											<div className="rounded-lg bg-red-100 p-2">
-												<FileUser className="h-4 w-4 text-red-600" />
-											</div>
-
-											<div className="flex-1">
-												<p className="font-medium text-slate-900">General Resume</p>
-												<p className="text-xs text-slate-500">
-													A well-rounded overview of my technical skills, projects, education, and
-													professional experience suitable for a wide range of software and
-													technology roles.
-												</p>
-											</div>
-										</div>
-									</DropdownMenuItem>
-
-									<DropdownMenuItem className="cursor-pointer rounded-xl p-3 focus:bg-blue-50">
-										<div className="flex items-start gap-3">
-											<div className="rounded-lg bg-violet-100 p-2">
-												<Brain className="h-4 w-4 text-violet-600" />
-											</div>
-
-											<div className="flex-1">
-												<p className="font-medium text-slate-900">Data Science Resume</p>
-												<p className="text-xs text-slate-500">
-													Machine Learning, Analytics, Python, AI and data engineering experience.
-												</p>
-											</div>
-										</div>
-									</DropdownMenuItem>
-
-									<DropdownMenuItem className="cursor-pointer rounded-xl p-3 focus:bg-blue-50">
-										<div className="flex items-start gap-3">
-											<div className="rounded-lg bg-amber-100 p-2">
-												<Cloud className="h-4 w-4 text-amber-600" />
-											</div>
-
-											<div className="flex-1">
-												<p className="font-medium text-slate-900">Cloud Engineer Resume</p>
-												<p className="text-xs text-slate-500">
-													AWS, Docker, CI/CD, infrastructure, scalability and cloud-native
-													development.
-												</p>
-											</div>
-										</div>
-									</DropdownMenuItem>
-
-									<DropdownMenuItem className="cursor-pointer rounded-xl p-3 focus:bg-blue-50">
-										<div className="flex items-start gap-3">
-											<div className="rounded-lg bg-emerald-100 p-2">
-												<Code2 className="h-4 w-4 text-emerald-600" />
-											</div>
-
-											<div className="flex-1">
-												<p className="font-medium text-slate-900">Software Engineer Resume</p>
-												<p className="text-xs text-slate-500">
-													Full-stack web development, TypeScript, React, Next.js and backend
-													engineering.
-												</p>
-											</div>
-										</div>
-									</DropdownMenuItem>
-								</DropdownMenuGroup>
+								<ScrollArea className="min-h-0 h-40">
+									<DropdownMenuGroup className="flex flex-col gap-4">
+										{resumeList.map(resume => (
+											<DropdownMenuItem
+												key={resume.id}
+												className="cursor-pointer rounded-2xl p-0 focus:bg-transparent data-highlighted:bg-transparent">
+												<DownloadResume
+													url={resume.url}
+													type={resume.role}
+													description={resume.description}
+													name={resume.resumeName || resume.orginalFileName || 'download'}
+												/>
+											</DropdownMenuItem>
+										))}
+									</DropdownMenuGroup>
+								</ScrollArea>
 							</DropdownMenuContent>
 						</DropdownMenu>
 					</div>
