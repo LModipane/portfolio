@@ -4,6 +4,7 @@ import { Role } from '@/types';
 import { cn } from '@/lib/utils';
 import gitHubLogo from '../public/github.svg';
 import linkinlogo from '../public/linkedin.svg';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { DownloadResume, Titles } from '@/components/index';
 import { client as SanityClient } from '@/sanity/lib/client';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
@@ -11,9 +12,6 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/h
 import {
 	Mail,
 	Clock,
-	Brain,
-	Cloud,
-	Code2,
 	MapPin,
 	Sparkles,
 	Download,
@@ -35,7 +33,6 @@ import {
 	DropdownMenuTrigger,
 	DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
-import { ScrollArea } from '@/components/ui/scroll-area';
 
 type Hero = {
 	myName: string;
